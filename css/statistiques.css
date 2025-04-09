@@ -1,0 +1,683 @@
+/* ========== STATISTIQUES.CSS ========== */
+/* Styles spécifiques pour la page de statistiques */
+
+/* Contenu des statistiques */
+.stats-content {
+    padding: 1rem 0;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.stats-content h1 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--dark-color);
+}
+
+/* Filtres de période */
+.period-filter {
+    background-color: var(--white-color);
+    border-radius: 12px;
+    padding: 1.2rem;
+    margin-bottom: 2rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: var(--card-shadow);
+}
+
+.period-filter span {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: var(--dark-color);
+}
+
+.filter-buttons {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.period-btn {
+    background-color: var(--light-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--dark-color);
+}
+
+.period-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.period-btn.active {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+}
+
+.custom-period {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-left: auto;
+}
+
+.custom-period label {
+    font-size: 0.85rem;
+    color: var(--gray-color);
+}
+
+.custom-period input[type="date"] {
+    border: 1px solid #e9ecef;
+    padding: 0.5rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    background-color: var(--light-color);
+}
+
+.apply-period-btn {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.apply-period-btn:hover {
+    background-color: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Résumé des statistiques */
+.stats-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-bottom: 2.5rem;
+}
+
+.summary-card {
+    background-color: var(--white-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.summary-card:nth-child(1) { animation-delay: 0.1s; }
+.summary-card:nth-child(2) { animation-delay: 0.2s; }
+.summary-card:nth-child(3) { animation-delay: 0.3s; }
+.summary-card:nth-child(4) { animation-delay: 0.4s; }
+
+.summary-icon {
+    background-color: var(--primary-light);
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    flex-shrink: 0;
+}
+
+.summary-icon i {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+}
+
+.summary-data {
+    flex: 1;
+}
+
+.summary-data h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+    color: var(--gray-color);
+}
+
+.summary-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.3rem;
+    color: var(--dark-color);
+}
+
+.summary-trend {
+    display: flex;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.summary-trend.up {
+    color: var(--success-color);
+}
+
+.summary-trend.up::before {
+    content: '\f062';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+.summary-trend.down {
+    color: var(--danger-color);
+}
+
+.summary-trend.down::before {
+    content: '\f063';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    margin-right: 5px;
+}
+
+/* Graphiques détaillés */
+.detailed-charts {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 20px;
+    margin-bottom: 2.5rem;
+}
+
+.chart-container {
+    background-color: var(--white-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    height: auto;
+    min-height: 300px;
+    animation: fadeIn 0.5s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.chart-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chart-container:hover::before {
+    opacity: 1;
+}
+
+.chart-container.large {
+    grid-column: span 12;
+}
+
+.chart-container.medium {
+    grid-column: span 6;
+}
+
+@media (max-width: 992px) {
+    .chart-container.medium {
+        grid-column: span 12;
+    }
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--hover-shadow);
+}
+
+.chart-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.chart-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.chart-actions {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.chart-action-btn {
+    background-color: var(--light-color);
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--gray-color);
+}
+
+.chart-action-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.chart-action-btn.active {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+/* Tableau de données détaillées */
+.detailed-data {
+    background-color: var(--white-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: var(--card-shadow);
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.5s ease-out 1s;
+}
+
+.data-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.2rem;
+}
+
+.data-header h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark-color);
+}
+
+.data-actions {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.data-action-btn {
+    background-color: var(--light-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--dark-color);
+}
+
+.data-action-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.export-pdf {
+    background-color: rgba(230, 55, 87, 0.1);
+    color: var(--danger-color);
+}
+
+.export-pdf:hover {
+    background-color: rgba(230, 55, 87, 0.2);
+    color: var(--danger-color);
+}
+
+.export-csv {
+    background-color: rgba(0, 217, 126, 0.1);
+    color: var(--success-color);
+}
+
+.export-csv:hover {
+    background-color: rgba(0, 217, 126, 0.2);
+    color: var(--success-color);
+}
+
+.data-table-container {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    min-width: 700px;
+}
+
+.data-table thead th {
+    background-color: var(--light-color);
+    padding: 0.8rem;
+    text-align: left;
+    font-weight: 600;
+    color: var(--dark-color);
+    white-space: nowrap;
+}
+
+.data-table tbody td {
+    padding: 0.8rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    color: var(--dark-color);
+}
+
+.data-table tbody tr:hover {
+    background-color: var(--light-color);
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.pagination-btn {
+    background-color: var(--light-color);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--dark-color);
+}
+
+.pagination-btn:hover {
+    background-color: var(--primary-light);
+    color: var(--primary-color);
+}
+
+.pagination-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-info {
+    font-size: 0.9rem;
+    color: var(--gray-color);
+}
+
+/* Animations supplémentaires */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.02);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.summary-value {
+    animation: pulse 3s infinite;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+    .period-filter {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .custom-period {
+        margin-left: 0;
+        margin-top: 1rem;
+    }
+    
+    .stats-summary {
+        grid-template-columns: 1fr;
+    }
+    
+    .pagination {
+        flex-wrap: wrap;
+    }
+}
+
+/* État de survol pour les cellules du tableau */
+.data-table tbody td:hover {
+    background-color: rgba(44, 123, 229, 0.05);
+}
+
+/* Styles pour les lignes alternées du tableau */
+.data-table tbody tr:nth-child(even) {
+    background-color: rgba(249, 251, 253, 0.5);
+}
+
+/* Styles pour les dates spéciales dans le tableau (jour actuel) */
+.data-table tbody tr:first-child {
+    background-color: rgba(0, 217, 126, 0.05);
+}
+
+/* Custom styles pour les inputs date */
+.custom-period input[type="date"]::-webkit-calendar-picker-indicator {
+    background-color: var(--primary-light);
+    padding: 5px;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+/* Effet de survol pour les cartes de résumé */
+.summary-card:hover .summary-icon {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
+}
+
+/* ========== STYLES POUR LES GRAPHIQUES ========== */
+
+/* Styles globaux pour tous les graphiques */
+canvas {
+    width: 100% !important;
+    height: calc(100% - 50px) !important;
+    transition: all 0.3s ease;
+}
+
+/* Personnalisation des graphiques Chart.js */
+.chart-container:hover canvas {
+    animation: chart-pop 0.4s ease forwards;
+}
+
+@keyframes chart-pop {
+    0% { transform: scale(0.98); }
+    50% { transform: scale(1.01); }
+    100% { transform: scale(1); }
+}
+
+/* Styles spécifiques pour chaque type de graphique */
+
+/* Graphique Production vs Consommation */
+#productionConsumptionChart {
+    --chart-color-1: var(--success-color);
+    --chart-color-2: var(--primary-color);
+    --chart-grid-color: rgba(149, 170, 201, 0.1);
+    --chart-text-color: var(--dark-color);
+}
+
+/* Graphique des sources */
+#sourcesChart {
+    --pie-chart-border: 2px;
+    max-height: 220px !important;
+    margin: 0 auto;
+}
+
+/* Graphique Performance batterie */
+#batteryPerformanceChart {
+    --line-thickness: 3px;
+}
+
+/* Graphique Consommation par appareil */
+#deviceConsumptionChart {
+    --bar-hover-offset: 4px;
+}
+
+/* Graphique Économies réalisées */
+#savingsChart {
+    --savings-line-color: var(--success-color);
+}
+
+/* Surcharges spécifiques pour Chart.js */
+/* Ces styles seront appliqués globalement aux graphiques */
+:root {
+    --chart-font: 'Poppins', sans-serif;
+    --chart-font-size: 11px;
+    --chart-animation-duration: 1500ms;
+}
+
+/* Personnalisation des couleurs pour les différents types de graphiques */
+.chart-customization {
+    /* Couleurs principales pour les graphiques */
+    --chart-color-primary: var(--primary-color);
+    --chart-color-secondary: var(--success-color);
+    --chart-color-tertiary: var(--warning-color);
+    --chart-color-quaternary: var(--danger-color);
+    
+    /* Couleurs pour le graphique Production vs Consommation */
+    --prod-cons-color-1: var(--success-color);
+    --prod-cons-color-2: var(--primary-color);
+    
+    /* Couleurs pour le graphique des sources */
+    --source-color-1: var(--success-color);
+    --source-color-2: var(--gray-color);
+    
+    /* Couleurs pour le graphique Performance de la batterie */
+    --battery-background: rgba(44, 123, 229, 0.2);
+    --battery-border: var(--primary-color);
+    
+    /* Couleurs pour le graphique Consommation par appareil */
+    --device-color-1: rgba(44, 123, 229, 0.7);
+    --device-color-2: rgba(0, 217, 126, 0.7);
+    --device-color-3: rgba(246, 195, 67, 0.7);
+    --device-color-4: rgba(230, 55, 87, 0.7);
+    --device-color-5: rgba(119, 93, 208, 0.7);
+    --device-color-6: rgba(95, 168, 211, 0.7);
+    
+    /* Couleurs pour le graphique Économies réalisées */
+    --savings-background: rgba(0, 217, 126, 0.2);
+    --savings-border: var(--success-color);
+}
+
+/* Personnalisation spécifique du rendu des graphiques */
+canvas {
+    font-family: var(--chart-font) !important;
+}
+
+/* Styles pour améliorer l'apparence des tooltips */
+.chartjs-tooltip {
+    background: var(--white-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 10px 14px;
+    border-left: 3px solid var(--primary-color);
+    font-family: var(--chart-font);
+    font-size: 12px;
+    position: absolute;
+    z-index: 10;
+    opacity: 0;
+    transition: all 0.2s ease;
+    pointer-events: none;
+}
+
+.chartjs-tooltip-key {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-right: 5px;
+    border-radius: 2px;
+}
+
+/* Effet d'ombre pour les éléments du graphique en survol */
+.hover-shadow {
+    filter: drop-shadow(0 5px 10px rgba(0, 0, 0, 0.2));
+}
+
+/* Animation pour l'apparition des graphiques */
+.chart-container {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 0.5s ease-out forwards;
+}
+
+.chart-container:nth-child(1) { animation-delay: 0.5s; }
+.chart-container:nth-child(2) { animation-delay: 0.6s; }
+.chart-container:nth-child(3) { animation-delay: 0.7s; }
+.chart-container:nth-child(4) { animation-delay: 0.8s; }
+.chart-container:nth-child(5) { animation-delay: 0.9s; }
+
+/* Personnalisation de Chart.js via CSS variables */
+/* Ces styles seront ajoutés à la page via le script JavaScript lors de l'initialisation des graphiques */
+/* et permettront de personnaliser les graphiques sans modifier directement le JavaScript */
+#productionConsumptionChart {
+    --grid-color: rgba(149, 170, 201, 0.1);
+    --text-color: var(--dark-color);
+    --font-family: 'Poppins', sans-serif;
+    --font-size: 11px;
+}
+
+/* Adaptation des graphiques pour les écrans plus petits */
+@media (max-width: 576px) {
+    .chart-container {
+        min-height: 250px;
+    }
+}
+
+/* Effet de survol raffiné pour les graphiques */
+.chart-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--success-color));
+    transition: width 0.3s ease;
+}
+
+.chart-container:hover::after {
+    width: 70%;
+}
+
+/* Style JavaScript pour injecter dans les options Chart.js */
+/* Ce style sera utilisé par un script pour améliorer l'apparence des graphiques */
+.chart-script-styles {
+    display: none;
+}

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifications - Système de Batteries Intelligentes</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/notifications.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar / Menu de navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo1.png" alt="Logo">
+                <h2>T-Power</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="statistiques.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Statistiques</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="parametres.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user-info">
+                <img src="images/user.png" alt="User">
+                <div class="user-details">
+                    <h4>Utilisateur</h4>
+                    <a href="profil.html">Voir profil</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher...">
+                </div>
+                <div class="user-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="notifications-content">
+                <h1>Notifications</h1>
+                <p class="date-display">Mercredi 9 Avril 2025 | <span id="current-time">14:30</span></p>
+
+                <!-- Filtres de notifications -->
+                <div class="notifications-filter">
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="all">Toutes</button>
+                        <button class="filter-btn" data-filter="system">Système</button>
+                        <button class="filter-btn" data-filter="battery">Batterie</button>
+                        <button class="filter-btn" data-filter="energy">Énergie</button>
+                        <button class="filter-btn" data-filter="alerts">Alertes</button>
+                    </div>
+                    <div class="filter-actions">
+                        <button class="mark-all-read">
+                            <i class="fas fa-check-double"></i> Tout marquer comme lu
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Liste des notifications -->
+                <div class="notifications-list">
+                    <!-- Notification non lue avec alerte -->
+                    <div class="notification-item unread alert" data-type="alerts">
+                        <div class="notification-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h3>Consommation anormale détectée</h3>
+                                <span class="notification-time">Il y a 30 minutes</span>
+                            </div>
+                            <p>Le réfrigérateur consomme 25% plus d'énergie que la normale. Une vérification pourrait être nécessaire.</p>
+                            <div class="notification-actions">
+                                <button class="btn-view">Voir les détails</button>
+                                <button class="btn-dismiss">Ignorer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification non lue -->
+                    <div class="notification-item unread" data-type="system">
+                        <div class="notification-icon">
+                            <i class="fas fa-sync"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h3>Mise à jour du firmware disponible</h3>
+                                <span class="notification-time">Il y a 2 heures</span>
+                            </div>
+                            <p>La version 3.2.2 du firmware est disponible. Cette mise à jour améliore la stabilité du système et corrige des bugs mineurs.</p>
+                            <div class="notification-actions">
+                                <button class="btn-view">Installer maintenant</button>
+                                <button class="btn-dismiss">Plus tard</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification non lue -->
+                    <div class="notification-item unread" data-type="energy">
+                        <div class="notification-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h3>Production solaire optimale</h3>
+                                <span class="notification-time">Il y a 5 heures</span>
+                            </div>
+                            <p>La production solaire a atteint 4.5 kW, ce qui représente 100% de la capacité. C'est le moment idéal pour utiliser vos appareils énergivores.</p>
+                            <div class="notification-actions">
+                                <button class="btn-view">Voir l'analyse</button>
+                                <button class="btn-dismiss">Ignorer</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Notification lue -->
+                    <div class="notification-item" data-type="battery">
+                        <div class="notification-icon">
+                            <i class="fas fa-battery-full"></i>
+                        </div>
+                        <div class="notification-content">
+                            <div class="notification-header">
+                                <h3>Batterie complètement chargée</h3>
+                                <span class="notification-time">Hier à 

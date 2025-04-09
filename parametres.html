@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres - Système de Batteries Intelligentes</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/parametres.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar / Menu de navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo1.png" alt="Logo">
+                <h2>T-Power</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="statistiques.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Statistiques</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="parametres.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user-info">
+                <img src="images/user.png" alt="User">
+                <div class="user-details">
+                    <h4>Utilisateur</h4>
+                    <a href="profil.html">Voir profil</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher...">
+                </div>
+                <div class="user-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="parameters-content">
+                <h1>Paramètres</h1>
+                <p class="date-display">Mercredi 9 Avril 2025 | <span id="current-time">14:30</span></p>
+
+                <div class="parameters-sections">
+                    <!-- Section onglets -->
+                    <div class="tabs-container">
+                        <div class="tabs">
+                            <button class="tab-btn active" data-tab="system">Système</button>
+                            <button class="tab-btn" data-tab="battery">Batterie</button>
+                            <button class="tab-btn" data-tab="energy">Gestion d'énergie</button>
+                            <button class="tab-btn" data-tab="notifications">Notifications</button>
+                            <button class="tab-btn" data-tab="app">Application</button>
+                        </div>
+
+                        <!-- Contenu des onglets -->
+                        <div class="tab-content">
+                            <!-- Onglet Système -->
+                            <div class="tab-pane active" id="system-tab">
+                                <div class="settings-group">
+                                    <h3>Informations système</h3>
+                                    <div class="info-item">
+                                        <span>Modèle :</span>
+                                        <span class="info-value">T-Power Pro 5000</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Numéro de série :</span>
+                                        <span class="info-value">TP-2025-04578</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Version du firmware :</span>
+                                        <span class="info-value">3.2.1</span>
+                                        <button class="small-btn">Vérifier les mises à jour</button>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Connexion :</span>
+                                        <span class="info-value connected">Connecté (Wifi)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Dernier diagnostic :</span>
+                                        <span class="info-value">08/04/2025 à 23:00</span>
+                                        <button class="small-btn">Lancer un diagnostic</button>
+                                    </div>
+                                </div>
+
+                                <div class="settings-group">
+                                    <h3>Paramètres réseau</h3>
+                                    <div class="form-group">
+                                        <label for="network-type">Type de connexion</label>
+                                        <select id="network-type">
+                                            <option value="wifi">WiFi</option>
+                                            <option value="ethernet">Ethernet</option>
+                                            <option value="cellular">4G/5G</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wifi-name">Nom du réseau WiFi</label>
+                                        <input type="text" id="wifi-name" value="Maison_WiFi">
+                                    </div>
+                                    <div class="form-group password-field">
+                                        <label for="wifi-password">Mot de passe WiFi</label>
+                                        <input type="password" id="wifi-password" value="************">
+                                        <button class="toggle-password"><i class="fas fa-eye"></i></button>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn-save">Enregistrer</button>
+                                        <button class="btn-test">Tester la connexion</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Onglet Batterie -->
+                            <div class="tab-pane" id="battery-tab">
+                                <div class="settings-group">
+                                    <h3>État de la batterie</h3>
+                                    <div class="info-item">
+                                        <span>Capacité totale :</span>
+                                        <span class="info-value">5.2 kWh</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Capacité restante :</span>
+                                        <span class="info-value">4.8 kWh (92%)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Cycles de charge :</span>
+                                        <span class="info-value">125 / 5000</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Santé de la batterie :</span>
+                                        <span class="info-value health-good">Excellente (98%)</span>
+                                    </div>
+                                    <div class="info-item">
+                                        <span>Température actuelle :</span>
+                                        <span class="info-value">24.5°C</span>
+                                    </div>
+                                </div>
+
+                                <div class="settings-group">
+                                    <h3>Configuration de charge</h3>
+                                    <div class="form-group">
+                                        <label for="charge-limit">Limite de charge maximale</label>
+                                        <div class="range-slider">
+                                            <input type="range" id="charge-limit" min="50" max="100" value="95">
+                                            <span class="range-value">95%</span>
+                                        </div>
+                                        <p class="setting-help">Limiter la charge maximale peut prolonger la durée de vie de la batterie.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="discharge-limit">Limite de décharge minimale</label>
+                                        <div class="range-slider">
+                                            <input type="range" id="discharge-limit" min="5" max="50" value="10">
+                                            <span class="range-value">10%</span>
+                                        </div>
+                                        <p class="setting-help">Éviter les décharges profondes prolonge la durée de vie de la batterie.</p>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn-save">Enregistrer</button>
+                                        <button class="btn-reset">Réinitialiser</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Onglet Gestion d'énergie -->
+                            <div class="tab-pane" id="energy-tab">
+                                <div class="settings-group">
+                                    <h3>Priorités de source d'énergie</h3>
+                                    <div class="form-group">
+                                        <label>Source prioritaire</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="energy-priority" value="solar" checked>
+                                                <span class="radio-text">Solaire d'abord</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="energy-priority" value="grid">
+                                                <span class="radio-text">Réseau d'abord</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="energy-priority" value="auto">
+                                                <span class="radio-text">Auto (basé sur le coût)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Mode de fonctionnement</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="operation-mode" value="economy" checked>
+                                                <span class="radio-text">Économie d'énergie</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="operation-mode" value="balanced">
+                                                <span class="radio-text">Équilibré</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="operation-mode" value="performance">
+                                                <span class="radio-text">Performance maximale</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="settings-group">
+                                    <h3>Planification intelligente</h3>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="smart-scheduling" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Activer la planification intelligente</span>
+                                        </label>
+                                        <p class="setting-help">Optimise automatiquement l'utilisation d'énergie en fonction des tarifs et prévisions météo.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="grid-price">Prix du kWh réseau</label>
+                                        <div class="input-with-unit">
+                                            <input type="number" id="grid-price" value="0.18" step="0.01">
+                                            <span class="unit">€</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="peak-hours">Heures pleines</label>
+                                        <div class="time-range">
+                                            <input type="time" id="peak-start" value="06:00">
+                                            <span>à</span>
+                                            <input type="time" id="peak-end" value="22:00">
+                                        </div>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn-save">Enregistrer</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Onglet Notifications -->
+                            <div class="tab-pane" id="notifications-tab">
+                                <div class="settings-group">
+                                    <h3>Préférences de notifications</h3>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="battery-notifications" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">État de la batterie</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="energy-notifications" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Production/Consommation d'énergie</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="saving-notifications" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Économies et optimisations</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="system-notifications" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Mises à jour système</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="alert-notifications" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Alertes et erreurs</span>
+                                        </label>
+                                    </div>
+                                </div>
+
+                                <div class="settings-group">
+                                    <h3>Méthodes de notification</h3>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="app-notifications" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Notifications dans l'application</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="email-notifications" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Notifications par e-mail</span>
+                                        </label>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email-address">Adresse e-mail</label>
+                                        <input type="email" id="email-address" value="utilisateur@example.com">
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn-save">Enregistrer</button>
+                                        <button class="btn-test">Envoyer un e-mail test</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Onglet Application -->
+                            <div class="tab-pane" id="app-tab">
+                                <div class="settings-group">
+                                    <h3>Apparence</h3>
+                                    <div class="form-group">
+                                        <label>Thème</label>
+                                        <div class="radio-group">
+                                            <label class="radio-label">
+                                                <input type="radio" name="theme" value="light" checked>
+                                                <span class="radio-text">Clair</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="theme" value="dark">
+                                                <span class="radio-text">Sombre</span>
+                                            </label>
+                                            <label class="radio-label">
+                                                <input type="radio" name="theme" value="auto">
+                                                <span class="radio-text">Automatique (selon l'heure)</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="language">Langue</label>
+                                        <select id="language">
+                                            <option value="fr" selected>Français</option>
+                                            <option value="en">English</option>
+                                            <option value="de">Deutsch</option>
+                                            <option value="es">Español</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="settings-group">
+                                    <h3>Unités et formats</h3>
+                                    <div class="form-group">
+                                        <label for="temperature-unit">Unité de température</label>
+                                        <select id="temperature-unit">
+                                            <option value="c" selected>Celsius (°C)</option>
+                                            <option value="f">Fahrenheit (°F)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="date-format">Format de date</label>
+                                        <select id="date-format">
+                                            <option value="dmy" selected>JJ/MM/AAAA</option>
+                                            <option value="mdy">MM/JJ/AAAA</option>
+                                            <option value="ymd">AAAA-MM-JJ</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="time-format">Format d'heure</label>
+                                        <select id="time-format">
+                                            <option value="24h" selected>24 heures</option>
+                                            <option value="12h">12 heures (AM/PM)</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn-save">Enregistrer</button>
+                                        <button class="btn-reset">Réinitialiser</button>
+                                    </div>
+                                </div>
+
+                                <div class="settings-group">
+                                    <h3>Confidentialité et données</h3>
+                                    <div class="form-group">
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="analytics" checked>
+                                            <span class="toggle-slider"></span>
+                                            <span class="toggle-label">Partager les statistiques anonymes</span>
+                                        </label>
+                                        <p class="setting-help">Ces données nous aident à améliorer le service.</p>
+                                    </div>
+                                    <div class="form-group">
+                                        <button class="btn-delete-data">Effacer toutes les données</button>
+                                        <p class="setting-help warning">Cette action est irréversible.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mettre à jour l'heure en temps réel
+        function updateTime() {
+            const now = new Date();
+            const timeDisplay = document.getElementById('current-time');
+            timeDisplay.textContent = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        setInterval(updateTime, 60000);
+        updateTime();
+
+        // Gestion des onglets
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Désactiver tous les onglets
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabPanes.forEach(pane => pane.classList.remove('active'));
+                    
+                    // Activer l'onglet sélectionné
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab') + '-tab';
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+
+            // Gestion des sliders
+            const rangeInputs = document.querySelectorAll('input[type="range"]');
+            rangeInputs.forEach(input => {
+                input.addEventListener('input', function() {
+                    const valueDisplay = input.parentElement.querySelector('.range-value');
+                    valueDisplay.textContent = this.value + '%';
+                });
+            });
+
+            // Toggle password visibility
+            const togglePasswordBtns = document.querySelectorAll('.toggle-password');
+            togglePasswordBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const passwordInput = this.parentElement.querySelector('input');
+                    const icon = this.querySelector('i');
+                    
+                    if (passwordInput.type === 'password') {
+                        passwordInput.type = 'text';
+                        icon.classList.remove('fa-eye');
+                        icon.classList.add('fa-eye-slash');
+                    } else {
+                        passwordInput.type = 'password';
+                        icon.classList.remove('fa-eye-slash');
+                        icon.classList.add('fa-eye');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

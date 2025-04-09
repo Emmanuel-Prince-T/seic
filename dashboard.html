@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Système de Batteries Intelligentes</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar / Menu de navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo1.png" alt="Logo">
+                <h2>T-Power</h2>
+            </div>
+            <ul class="nav-links">
+                <li class="active">
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="statistiques.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Statistiques</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="parametres.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user-info">
+                <img src="images/user.png" alt="User">
+                <div class="user-details">
+                    <h4>Utilisateur</h4>
+                    <a href="profil.html">Voir profil</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher...">
+                </div>
+                <div class="user-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="dashboard-content">
+                <h1>Dashboard</h1>
+                <p class="date-display">Mercredi 9 Avril 2025 | <span id="current-time">14:30</span></p>
+
+                <!-- Widgets d'informations principales -->
+                <div class="info-widgets">
+                    <div class="widget battery-status">
+                        <div class="widget-header">
+                            <h3>État de la batterie</h3>
+                            <i class="fas fa-battery-three-quarters"></i>
+                        </div>
+                        <div class="battery-display">
+                            <div class="battery-level" style="width: 75%;">75%</div>
+                        </div>
+                        <div class="widget-details">
+                            <p><strong>Autonomie estimée:</strong> 12h30</p>
+                            <p><strong>État:</strong> <span class="status good">Bon</span></p>
+                        </div>
+                    </div>
+                    
+                    <div class="widget energy-source">
+                        <div class="widget-header">
+                            <h3>Source d'énergie actuelle</h3>
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <div class="energy-distribution">
+                            <div class="energy-item">
+                                <span class="energy-label">Solaire</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 65%;"></div>
+                                </div>
+                                <span class="energy-percentage">65%</span>
+                            </div>
+                            <div class="energy-item">
+                                <span class="energy-label">Réseau</span>
+                                <div class="progress-bar">
+                                    <div class="progress" style="width: 35%;"></div>
+                                </div>
+                                <span class="energy-percentage">35%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget power-consumption">
+                        <div class="widget-header">
+                            <h3>Consommation actuelle</h3>
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="consumption-value">
+                            <h2>3.2 kW</h2>
+                        </div>
+                        <div class="consumption-trend up">
+                            <i class="fas fa-arrow-up"></i>
+                            <span>12% par rapport à hier</span>
+                        </div>
+                    </div>
+                    
+                    <div class="widget savings">
+                        <div class="widget-header">
+                            <h3>Économies</h3>
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="savings-value">
+                            <h2>127.50 €</h2>
+                            <span>ce mois-ci</span>
+                        </div>
+                        <div class="savings-trend down">
+                            <i class="fas fa-arrow-down"></i>
+                            <span>3% par rapport au mois dernier</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphiques -->
+                <div class="chart-section">
+                    <div class="chart-container">
+                        <h3>Consommation énergétique (24h)</h3>
+                        <canvas id="consumptionChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <h3>Production solaire (24h)</h3>
+                        <canvas id="solarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Section système -->
+                <div class="system-status-section">
+                    <h2>État du système</h2>
+                    <div class="system-cards">
+                        <div class="system-card">
+                            <div class="system-icon">
+                                <i class="fas fa-temperature-high"></i>
+                            </div>
+                            <div class="system-info">
+                                <h4>Température</h4>
+                                <p>24.5°C</p>
+                                <span class="status-indicator normal"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="system-card">
+                            <div class="system-icon">
+                                <i class="fas fa-wifi"></i>
+                            </div>
+                            <div class="system-info">
+                                <h4>Connectivité</h4>
+                                <p>Excellente</p>
+                                <span class="status-indicator good"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="system-card">
+                            <div class="system-icon">
+                                <i class="fas fa-sync"></i>
+                            </div>
+                            <div class="system-info">
+                                <h4>Cycles</h4>
+                                <p>125 / 5000</p>
+                                <span class="status-indicator normal"></span>
+                            </div>
+                        </div>
+                        
+                        <div class="system-card">
+                            <div class="system-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="system-info">
+                                <h4>Alertes</h4>
+                                <p>Aucune</p>
+                                <span class="status-indicator good"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Optimisations suggérées -->
+                <div class="optimization-section">
+                    <h2>Optimisations suggérées</h2>
+                    <div class="optimization-cards">
+                        <div class="optimization-card">
+                            <div class="optimization-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="optimization-content">
+                                <h4>Programmation intelligente</h4>
+                                <p>Décalez vos charges importantes entre 11h et 15h pour maximiser l'utilisation solaire.</p>
+                                <button class="apply-btn">Appliquer</button>
+                            </div>
+                        </div>
+                        
+                        <div class="optimization-card">
+                            <div class="optimization-icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <div class="optimization-content">
+                                <h4>Gestion des appareils</h4>
+                                <p>Le réfrigérateur consomme 25% plus que la normale. Une maintenance pourrait être nécessaire.</p>
+                                <button class="apply-btn">En savoir plus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mettre à jour l'heure en temps réel
+        function updateTime() {
+            const now = new Date();
+            const timeDisplay = document.getElementById('current-time');
+            timeDisplay.textContent = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        setInterval(updateTime, 60000);
+        updateTime();
+
+        // Configuration des graphiques
+        window.onload = function() {
+            // Données pour le graphique de consommation
+            const consumptionCtx = document.getElementById('consumptionChart').getContext('2d');
+            const consumptionChart = new Chart(consumptionCtx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+                    datasets: [{
+                        label: 'Consommation (kW)',
+                        data: [1.2, 0.9, 0.8, 1.5, 3.2, 2.8, 2.5, 3.1, 3.4, 3.8, 2.7, 1.8],
+                        fill: true,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+            
+            // Données pour le graphique de production solaire
+            const solarCtx = document.getElementById('solarChart').getContext('2d');
+            const solarChart = new Chart(solarCtx, {
+                type: 'line',
+                data: {
+                    labels: ['00:00', '02:00', '04:00', '06:00', '08:00', '10:00', '12:00', '14:00', '16:00', '18:00', '20:00', '22:00'],
+                    datasets: [{
+                        label: 'Production (kW)',
+                        data: [0, 0, 0, 0.2, 1.1, 2.9, 4.2, 4.5, 3.8, 2.3, 0.7, 0],
+                        fill: true,
+                        backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                        borderColor: 'rgba(255, 159, 64, 1)',
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        };
+    </script>
+</body>
+</html>

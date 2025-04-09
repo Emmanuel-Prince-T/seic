@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistiques - Système de Batteries Intelligentes</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/statistiques.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar / Menu de navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <img src="images/logo.png" alt="Logo">
+                <h2>SmartBattery</h2>
+            </div>
+            <ul class="nav-links">
+                <li>
+                    <a href="dashboard.html">
+                        <i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li> 
+                <li class="active">
+                    <a href="statistiques.html">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Statistiques</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="parametres.html">
+                        <i class="fas fa-cog"></i>
+                        <span>Paramètres</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="notifications.html">
+                        <i class="fas fa-bell"></i>
+                        <span>Notifications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html">
+                        <i class="fas fa-question-circle"></i>
+                        <span>Accueil</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="user-info">
+                <img src="images/user.png" alt="User">
+                <div class="user-details">
+                    <h4>Utilisateur</h4>
+                    <a href="profil.html">Voir profil</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Contenu principal -->
+        <main class="main-content">
+            <header class="top-bar">
+                <div class="search-bar">
+                    <i class="fas fa-search"></i>
+                    <input type="text" placeholder="Rechercher...">
+                </div>
+                <div class="user-actions">
+                    <button class="notification-btn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge">3</span>
+                    </button>
+                    <button class="settings-btn">
+                        <i class="fas fa-cog"></i>
+                    </button>
+                    <button class="logout-btn">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </header>
+
+            <div class="stats-content">
+                <h1>Statistiques</h1>
+                <p class="date-display">Mercredi 9 Avril 2025 | <span id="current-time">14:30</span></p>
+
+                <!-- Filtres de période -->
+                <div class="period-filter">
+                    <span>Période :</span>
+                    <div class="filter-buttons">
+                        <button class="period-btn active" data-period="day">Jour</button>
+                        <button class="period-btn" data-period="week">Semaine</button>
+                        <button class="period-btn" data-period="month">Mois</button>
+                        <button class="period-btn" data-period="year">Année</button>
+                    </div>
+                    <div class="custom-period">
+                        <label for="start-date">Du</label>
+                        <input type="date" id="start-date" value="2025-04-02">
+                        <label for="end-date">Au</label>
+                        <input type="date" id="end-date" value="2025-04-09">
+                        <button class="apply-period-btn">Appliquer</button>
+                    </div>
+                </div>
+
+                <!-- Résumé des statistiques -->
+                <div class="stats-summary">
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="summary-data">
+                            <h3>Production totale</h3>
+                            <p class="summary-value">145.8 kWh</p>
+                            <span class="summary-trend up">+12% vs période précédente</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <div class="summary-data">
+                            <h3>Consommation totale</h3>
+                            <p class="summary-value">128.3 kWh</p>
+                            <span class="summary-trend up">+5% vs période précédente</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-solar-panel"></i>
+                        </div>
+                        <div class="summary-data">
+                            <h3>Production solaire</h3>
+                            <p class="summary-value">87.4 kWh</p>
+                            <span class="summary-trend up">+18% vs période précédente</span>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card">
+                        <div class="summary-icon">
+                            <i class="fas fa-euro-sign"></i>
+                        </div>
+                        <div class="summary-data">
+                            <h3>Économies réalisées</h3>
+                            <p class="summary-value">38.50 €</p>
+                            <span class="summary-trend up">+15% vs période précédente</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Graphiques détaillés -->
+                <div class="detailed-charts">
+                    <!-- Production vs Consommation -->
+                    <div class="chart-container large">
+                        <div class="chart-header">
+                            <h3>Production vs Consommation</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action-btn" data-type="line"><i class="fas fa-chart-line"></i></button>
+                                <button class="chart-action-btn" data-type="bar"><i class="fas fa-chart-bar"></i></button>
+                                <button class="chart-action-btn download-btn"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                        <canvas id="productionConsumptionChart"></canvas>
+                    </div>
+
+                    <!-- Utilisation par source -->
+                    <div class="chart-container medium">
+                        <div class="chart-header">
+                            <h3>Utilisation par source</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action-btn download-btn"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                        <canvas id="sourcesChart"></canvas>
+                    </div>
+
+                    <!-- Performance de la batterie -->
+                    <div class="chart-container medium">
+                        <div class="chart-header">
+                            <h3>Performance de la batterie</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action-btn download-btn"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                        <canvas id="batteryPerformanceChart"></canvas>
+                    </div>
+
+                    <!-- Consommation par appareil -->
+                    <div class="chart-container medium">
+                        <div class="chart-header">
+                            <h3>Consommation par appareil</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action-btn download-btn"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                        <canvas id="deviceConsumptionChart"></canvas>
+                    </div>
+
+                    <!-- Économies réalisées -->
+                    <div class="chart-container medium">
+                        <div class="chart-header">
+                            <h3>Économies réalisées</h3>
+                            <div class="chart-actions">
+                                <button class="chart-action-btn download-btn"><i class="fas fa-download"></i></button>
+                            </div>
+                        </div>
+                        <canvas id="savingsChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Tableau de données détaillées -->
+                <div class="detailed-data">
+                    <div class="data-header">
+                        <h3>Données détaillées</h3>
+                        <div class="data-actions">
+                            <button class="data-action-btn export-csv"><i class="fas fa-file-csv"></i> Exporter CSV</button>
+                            <button class="data-action-btn export-pdf"><i class="fas fa-file-pdf"></i> Exporter PDF</button>
+                        </div>
+                    </div>
+                    <div class="data-table-container">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Production solaire (kWh)</th>
+                                    <th>Consommation (kWh)</th>
+                                    <th>Utilisation réseau (kWh)</th>
+                                    <th>État batterie (%)</th>
+                                    <th>Économies (€)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>09/04/2025</td>
+                                    <td>14.2</td>
+                                    <td>18.5</td>
+                                    <td>4.3</td>
+                                    <td>75%</td>
+                                    <td>5.60</td>
+                                </tr>
+                                <tr>
+                                    <td>08/04/2025</td>
+                                    <td>12.8</td>
+                                    <td>17.2</td>
+                                    <td>4.4</td>
+                                    <td>68%</td>
+                                    <td>5.10</td>
+                                </tr>
+                                <tr>
+                                    <td>07/04/2025</td>
+                                    <td>15.6</td>
+                                    <td>19.3</td>
+                                    <td>3.7</td>
+                                    <td>82%</td>
+                                    <td>6.20</td>
+                                </tr>
+                                <tr>
+                                    <td>06/04/2025</td>
+                                    <td>13.9</td>
+                                    <td>18.1</td>
+                                    <td>4.2</td>
+                                    <td>76%</td>
+                                    <td>5.50</td>
+                                </tr>
+                                <tr>
+                                    <td>05/04/2025</td>
+                                    <td>10.5</td>
+                                    <td>17.8</td>
+                                    <td>7.3</td>
+                                    <td>61%</td>
+                                    <td>4.20</td>
+                                </tr>
+                                <tr>
+                                    <td>04/04/2025</td>
+                                    <td>9.2</td>
+                                    <td>16.9</td>
+                                    <td>7.7</td>
+                                    <td>54%</td>
+                                    <td>3.70</td>
+                                </tr>
+                                <tr>
+                                    <td>03/04/2025</td>
+                                    <td>11.2</td>
+                                    <td>19.5</td>
+                                    <td>8.3</td>
+                                    <td>58%</td>
+                                    <td>4.50</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="pagination">
+                        <button class="pagination-btn prev"><i class="fas fa-chevron-left"></i></button>
+                        <span class="pagination-info">Page 1 sur 4</span>
+                        <button class="pagination-btn next"><i class="fas fa-chevron-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Mettre à jour l'heure en temps réel
+        function updateTime() {
+            const now = new Date();
+            const timeDisplay = document.getElementById('current-time');
+            timeDisplay.textContent = now.toLocaleTimeString('fr-FR', { hour: '2-digit', minute: '2-digit' });
+        }
+        
+        setInterval(updateTime, 60000);
+        updateTime();
+
+        // Configuration des graphiques
+        window.onload = function() {
+            // Graphique Production vs Consommation
+            const prodConsCtx = document.getElementById('productionConsumptionChart').getContext('2d');
+            const prodConsChart = new Chart(prodConsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['03/04', '04/04', '05/04', '06/04', '07/04', '08/04', '09/04'],
+                    datasets: [
+                        {
+                            label: 'Production (kWh)',
+                            data: [11.2, 9.2, 10.5, 13.9, 15.6, 12.8, 14.2],
+                            fill: false,
+                            borderColor: '#00d97e',
+                            backgroundColor: 'rgba(0, 217, 126, 0.1)',
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Consommation (kWh)',
+                            data: [19.5, 16.9, 17.8, 18.1, 19.3, 17.2, 18.5],
+                            fill: false,
+                            borderColor: '#2c7be5',
+                            backgroundColor: 'rgba(44, 123, 229, 0.1)',
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Kilowatt-heure (kWh)'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+            
+            // Graphique des sources
+            const sourcesCtx = document.getElementById('sourcesChart').getContext('2d');
+            const sourcesChart = new Chart(sourcesCtx, {
+                type: 'pie',
+                data: {
+                    labels: ['Solaire', 'Réseau'],
+                    datasets: [{
+                        data: [87.4, 40.9],
+                        backgroundColor: [
+                            '#00d97e',
+                            '#95aac9'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom'
+                        }
+                    }
+                }
+            });
+            
+            // Graphique Performance batterie
+            const batteryCtx = document.getElementById('batteryPerformanceChart').getContext('2d');
+            const batteryChart = new Chart(batteryCtx, {
+                type: 'line',
+                data: {
+                    labels: ['03/04', '04/04', '05/04', '06/04', '07/04', '08/04', '09/04'],
+                    datasets: [{
+                        label: 'Niveau de batterie (%)',
+                        data: [58, 54, 61, 76, 82, 68, 75],
+                        fill: true,
+                        backgroundColor: 'rgba(44, 123, 229, 0.2)',
+                        borderColor: '#2c7be5',
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: {
+                                display: true,
+                                text: 'Pourcentage (%)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Graphique Consommation par appareil
+            const deviceCtx = document.getElementById('deviceConsumptionChart').getContext('2d');
+            const deviceChart = new Chart(deviceCtx, {
+                type: 'bar',
+                data: {
+                    labels: ['Chauffage', 'Réfrigérateur', 'Éclairage', 'Électroménager', 'Multimédia', 'Autres'],
+                    datasets: [{
+                        label: 'Consommation (kWh)',
+                        data: [45.2, 22.8, 15.6, 18.4, 10.5, 15.8],
+                        backgroundColor: [
+                            'rgba(44, 123, 229, 0.7)',
+                            'rgba(0, 217, 126, 0.7)',
+                            'rgba(246, 195, 67, 0.7)',
+                            'rgba(230, 55, 87, 0.7)',
+                            'rgba(119, 93, 208, 0.7)',
+                            'rgba(95, 168, 211, 0.7)'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Consommation (kWh)'
+                            }
+                        }
+                    }
+                }
+            });
+            
+            // Graphique Économies réalisées
+            const savingsCtx = document.getElementById('savingsChart').getContext('2d');
+            const savingsChart = new Chart(savingsCtx, {
+                type: 'line',
+                data: {
+                    labels: ['03/04', '04/04', '05/04', '06/04', '07/04', '08/04', '09/04'],
+                    datasets: [{
+                        label: 'Économies (€)',
+                        data: [4.5, 3.7, 4.2, 5.5, 6.2, 5.1, 5.6],
+                        fill: true,
+                        backgroundColor: 'rgba(0, 217, 126, 0.2)',
+                        borderColor: '#00d97e',
+                        tension: 0.3
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Euros (€)'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gestion des boutons de période
+            const periodButtons = document.querySelectorAll('.period-btn');
+            periodButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    periodButtons.forEach(btn => btn.classList.remove('active'));
+                    this.classList.add('active');
+                    // Ici vous pourriez ajouter la logique pour changer les données selon la période
+                });
+            });
+        };
+    </script>
+</body>
+</html>
